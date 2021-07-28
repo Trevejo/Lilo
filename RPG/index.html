@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+    <script src="script.js"></script>
+    <title>RPG</title>
+</head>
+<body>
+    <div class="container">
+        <h1 class="d-flex justify-content-center">Batalha RPG</h1>
+        <div class="accordion" id="accordionExample">
+            <div class="card">
+                <div class="card-header" id="headingOne">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                            PERSONAGENS
+                        </button>
+                    </h5>
+                </div>
+                <div class="collapse show container" id="collapseOne" aria-labelledby="headingOne" data-parent="#accordionExample">
+                    <div class="card-body">
+                        <table class="table table-bordered table-dark">
+                            <thead>
+                                <tr>
+                                    <th>Classe</th>
+                                    <th>Vida</th>
+                                    <th>Dano</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>Guerreiro</td>
+                                    <td>
+                                        <label id="GuerreiroVidaId">50</label>
+                                        <button onclick="evoluirVida('guerreiro')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                    <td>
+                                        <label id="GuerreiroDanoId">10</label>
+                                        <button onclick="evoluirDano('guerreiro')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Arqueiro</td>
+                                    <td>
+                                        <label id="ArqueiroVidaId">30</label>
+                                        <button onclick="evoluirVida('arqueiro')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                    <td>
+                                        <label id="ArqueiroDanoId">20</label>
+                                        <button onclick="evoluirDano('arqueiro')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>Mago</td>
+                                    <td>
+                                        <label id="MagoVidaId">20</label>
+                                        <button onclick="evoluirVida('mago')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                    <td>
+                                        <label id="MagoDanoId">30</label>
+                                        <button onclick="evoluirDano('mago')" class="btn btn-warning botaoUpdate">+</button>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <label>Pontos de Evolução</label>
+                        <label id="pontosEvolucaoId">1</label>
+                    </div>
+                </div>
+            </div>
+           
+            <div class="card">
+                <div class="car-header" id="cardHead">
+                    <h5 class="mb-0">
+                        <button class="btn btn-link" type="button" data-toggle="collapse" data-target="#batalhaCard" aria-expanded="true" aria-controls="batalhaCard">
+                            BATALHA
+                        </button>
+                    </h5>
+                </div>
+                <div id="batalhaCard" class="collapse show container">
+                    <form>
+                        <div class="form-group pt-3">
+                            <select id="selecaoInimigosId" class="custom-select">
+                                <option selected>Selecione os seus inimigos</option>
+                                <option value="0">Orcs</option>
+                                <option value="1">Zumbis</option>
+                                <option value="2">Demônios</option>
+                            </select>
+                            <button type="button" class="btn btn-danger mt-2 form-control" onclick="iniciarBatalha()">
+                                INICIAR BATALHA
+                            </button>
+                        </div>
+                    </form>
+                    <div class="row">
+
+                        <!-- lado personagem -->
+                        <div class="col-sm">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Personagem</label>
+                                </div>
+                                <select class="custom-select" onchange="selecionarPersonagem()" id="personagemEscolhidoId">
+                                    <option selected>Selecione o seu personagem</option>
+                                    <option value="0">Guerreiro</option>
+                                    <option value="1">Arqueiro</option>
+                                    <option value="2">Mago</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img class="mt-2" id="imagemPersonagemId">
+                            </div>
+                            <table class="table table-dark table-bordered mt-2">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Vida</th>
+                                        <td>
+                                            <label id="vidaPersonagemId">0</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dano</th>
+                                        <td>
+                                            <label id="danoPersonagemId">0</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <!-- botao atacar -->
+                        <div class="align-self-center">
+                            <button type="button" class="btn btn-primary form-control mt-3" onclick="Atacar()">
+                                Atacar
+                            </button>
+                        </div>
+
+                        <!-- lado inimigo -->
+                        <div class="col-sm">
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <label class="input-group-text" for="inputGroupSelect01">Inimigo</label>
+                                </div>
+                                <select class="custom-select" onchange="atualizarDadosAlvo()" id="inimigosEscolhidosId">
+                                    <option selected>Selecione seus inimigos</option>
+                                </select>
+                            </div>
+                            <div class="d-flex justify-content-center">
+                                <img class="mt-2" id="imagemInimigoId">
+                            </div>
+                            <table class="table table-dark table-bordered mt-2">
+                                <tbody>
+                                    <tr>
+                                        <th scope="row">Vida</th>
+                                        <td>
+                                            <label id="vidaInimigoId">0</label>
+                                        </td>
+                                    </tr>
+                                    <tr>
+                                        <th scope="row">Dano</th>
+                                        <td>
+                                            <label id="danoInimigoId">0</label>
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <!-- resultado -->
+                    <label>Resultado</label>
+                    <label id="resultadoId"></label>
+
+                    <!-- botao de saque -->
+                    <div>
+                        <button id="botaoSaquearId" onclick="saquear()" type="button" class="form-control mb-2 btn btn-warning" disabled>
+                                SAQUEAR
+                        </button>
+                    </div>
+                </div>
+                <!-- fim do body do batalha card -->
+            </div>
+            <!-- fim do batalha card -->
+        </div>
+        <!-- fim do acordion -->
+    </div>
+    <!-- fim do container -->
+</body>
+</html>
