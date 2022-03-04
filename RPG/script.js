@@ -1,245 +1,245 @@
-var vidaGuerreiro = 50;
-var danoGuerreiro = 10;
-var vidaArqueiro = 30;
-var danoArqueiro = 20;
-var vidaMago = 20;
-var danoMago = 30;
+var warriorLife = 50;
+var warriorDamage = 10;
+var archerLife = 30;
+var archerDamage = 20;
+var mageLife = 20;
+var mageDamage = 30;
 
-var imagemGuerreiro = "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FGuerreiro.png?1557149637440";
-var imagemArqueiro = "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FArqueiro.png?1557149637421";
-var imagemMago = "https://i.pinimg.com/236x/04/bc/cc/04bcccfe6e8f388b0f8698086622aed1--wizard-wizard-hama-art.jpg";
+var warriorImage = "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FGuerreiro.png?1557149637440";
+var archerImage = "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FArqueiro.png?1557149637421";
+var mageImage = "https://i.pinimg.com/236x/04/bc/cc/04bcccfe6e8f388b0f8698086622aed1--wizard-wizard-hama-art.jpg";
 
 
-function Personagem(classe, vida, dano, imagem){
-  this.classe = classe;
-  this.vida = vida;
-  this.dano = dano;
-  this.imagem = imagem;
+function Character(class1, life, damage, image){
+  this.class1 = class1;
+  this.life = life;
+  this.damage = damage;
+  this.image = image;
 }
 
-var personagemGuerreiro;
-var personagemArqueiro;
-var personagemMago;
-var personagens;
+var warriorCharacter;
+var archerCharacter;
+var mageCharacter;
+var characters;
 
-function criarPersonagens(){
-  personagemGuerreiro = new Personagem("Guerreiro", vidaGuerreiro, danoGuerreiro, imagemGuerreiro);
-  personagemArqueiro = new Personagem("Arqueiro", vidaArqueiro, danoArqueiro, imagemArqueiro);
-  personagemMago = new Personagem("Mago", vidaMago, danoMago, imagemMago);
-  personagens = [personagemGuerreiro, personagemArqueiro, personagemMago];
+function createCharacters(){
+  warriorCharacter = new Character("Warrior", warriorLife, warriorDamage, warriorImage);
+  archerCharacter = new Character("Archer", archerLife, archerDamage, archerImage);
+  mageCharacter = new Character("Mage", mageLife, mageDamage, mageImage);
+  characters = [warriorCharacter, archerCharacter, mageCharacter];
 }
 
-criarPersonagens();
+createCharacters();
 
-// sistema de evolução
+// evolution system
 
-var pontosParaEvolucao = 1;
-var pontosAoEvoluir = 5;
+var evolutionPoints = 1;
+var evolutionAttributes = 5;
 
-function atualizarPontosEvolucao(){
-  $("#pontosEvolucaoId").html(pontosParaEvolucao);
-  atualizarButtonDisabled();
+function updateEvolutionPoints(){
+  $("#evolutionPointsId").html(evolutionPoints);
+  updateButtonDisabled();
 }
 
-function atualizarButtonDisabled(){
-  if (pontosParaEvolucao <= 0){
-    $(".botaoUpdate").attr("disabled", true);
+function updateButtonDisabled(){
+  if (evolutionPoints <= 0){
+    $(".updateButton").attr("disabled", true);
   } else{
-    $(".botaoUpdate").attr("disabled", false);
+    $(".updateButton").attr("disabled", false);
   }
 }
 
-function evoluirDano(classe){
-  pontosParaEvolucao -= 1;
+function evolveDamage(class1){
+  evolutionPoints -= 1;
 
-  switch(classe){
-    case "guerreiro":
-      danoGuerreiro += pontosAoEvoluir;
-      $("#GuerreiroDanoId").html(danoGuerreiro);
+  switch(class1){
+    case "warrior":
+      warriorDamage += evolutionAttributes;
+      $("#WarriorDamageId").html(warriorDamage);
       break;
     case "arqueiro":
-      danoArqueiro += pontosAoEvoluir;
-      $("#ArqueiroDanoId").html(danoArqueiro);
+      archerDamage += evolutionAttributes;
+      $("#ArcherDamageId").html(archerDamage);
       break;
     case "mago":
-      danoMago += pontosAoEvoluir;
-      $("#MagoDanoId").html(danoMago);
+      mageDamage += evolutionAttributes;
+      $("#MageDamageId").html(mageDamage);
       break;
   }
-  atualizarPontosEvolucao();
+  updateEvolutionPoints();
 }
 
-function evoluirVida(classe){
-  pontosParaEvolucao -= 1;
+function evolveLife(class1){
+  evolutionPoints -= 1;
 
   
-  switch(classe){
-    case "guerreiro":
-      vidaGuerreiro += pontosAoEvoluir;
-      $("#GuerreiroVidaId").html(vidaGuerreiro);
+  switch(class1){
+    case "warrior":
+      warriorLife += evolutionAttributes;
+      $("#WarriorLifeId").html(warriorLife);
       break;
     case "arqueiro":
-      vidaArqueiro += pontosAoEvoluir;
-      $("#ArqueiroVidaId").html(vidaArqueiro);
+      archerLife += evolutionAttributes;
+      $("#ArcherLifeId").html(archerLife);
       break;
     case "mago":
-      vidaMago += pontosAoEvoluir;
-      $("#MagoVidaId").html(vidaMago);
+      mageLife += evolutionAttributes;
+      $("#MageLifeId").html(mageLife);
       break;
   }
-  atualizarPontosEvolucao();
+  updateEvolutionPoints();
 }
 
-// ---------------------- INIMIGOS -----------------------------------
+// ---------------------- ENEMIES -----------------------------------
 
-function Inimigo(nome, vida, dano, imagem){
-  this.nome = nome;
-  this.vida = vida;
-  this.dano = dano;
-  this.imagem = imagem;
+function Enemy(name, life, damage, image){
+  this.name = name;
+  this.life = life;
+  this.damage = damage;
+  this.image = image;
 }
 
-var inimigos = [];
+var enemies = [];
 
-function criarInimigos(){
+function createEnemies(){
   // orcs...
-  var orc = new Inimigo("Orc", 20, 10, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc.png?1557149638207");
-  var orcShaman = new Inimigo("Orc Shaman", 20, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc%20Shaman.png?1557149638044");
-  var orcChefe = new Inimigo("Orc Chefe", 50, 10, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc%20Chefe.png?1557149637813");
+  var orc = new Enemy("Orc", 20, 10, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc.png?1557149638207");
+  var orcShaman = new Enemy("Orc Shaman", 20, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc%20Shaman.png?1557149638044");
+  var orcBoss = new Enemy("Orc Boss", 50, 10, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FOrc%20Chefe.png?1557149637813");
 
-  var orcs = [orc, orcShaman, orcChefe];
+  var orcs = [orc, orcShaman, orcBoss];
 
   //mortos-vivos...
-  var esqueleto = new Inimigo("Esqueleto", 10, 20, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FEsqueleto.png?1557149637666");
-  var zumbi = new Inimigo("Zumbi", 20, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FZumbi.png?1557149638547");
-  var zumbiChefe = new Inimigo("Zumbi Chefe", 30, 50, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FZumbi%20Chefe.png?1557149638348");
+  var skeleton = new Enemy("Skeleton", 10, 20, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FEsqueleto.png?1557149637666");
+  var zombie = new Enemy("Zombie", 20, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FZumbi.png?1557149638547");
+  var zombieBoss = new Enemy("Zombie Boss", 30, 50, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FZumbi%20Chefe.png?1557149638348");
 
-  var mortosVivos = [esqueleto, zumbi, zumbiChefe];
+  var undeads = [skeleton, zombie, zombieBoss];
 
   //demonios
-  var imp = new Inimigo("Imp", 20, 20, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FImp.png?1557149637585");
-  var demonio = new Inimigo("Demônio", 30, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FDemonio.png?1557149637503");
-  var demonioChefe = new Inimigo("Demônio Chefe", 50, 40, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FDemonio%20Chefe.png?1557149637623");
+  var imp = new Enemy("Imp", 20, 20, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FImp.png?1557149637585");
+  var demon = new Enemy("Demon", 30, 30, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FDemonio.png?1557149637503");
+  var demonBoss = new Enemy("Demon Boss", 50, 40, "https://cdn.glitch.com/565b2bc1-af66-43f9-9e31-538d2571e56c%2FDemonio%20Chefe.png?1557149637623");
 
-  var demonios = [imp, demonio, demonioChefe];
+  var demons = [imp, demon, demonBoss];
 
-  inimigos = [orcs, mortosVivos, demonios];
+  enemies = [orcs, undeads, demons];
 }
 
-var indexPersonagem = 1;
-var indexGrupoInimigos;
-var indexInimigoAlvo;
+var characterIndex = 1;
+var enemiesGroupIndex;
+var enemyTargetIndex;
 
-function selecionarInimigos(){
-  indexGrupoInimigos = $("#selecaoInimigosId").val();
+function selectEnemies(){
+  enemiesGroupIndex = $("#selectEnemiesId").val();
 
   var htmlOptions = "";
 
   for(var i = 0; i < 3; i++){
-    htmlOptions += "<option value=" + i + ">" + inimigos[indexGrupoInimigos][i].nome + "</options>";
+    htmlOptions += "<option value=" + i + ">" + enemies[enemiesGroupIndex][i].name + "</options>";
   }
 
-  $("#inimigosEscolhidosId").html(htmlOptions);
+  $("#chosenEnemyId").html(htmlOptions);
 
-  atualizarDadosAlvo();
+  updateTargetData();
 }
 
-function atualizarDadosAlvo(){
-  indexInimigoAlvo = parseInt($("#inimigosEscolhidosId").val());
-  $("#vidaInimigoId").html(inimigos[indexGrupoInimigos][indexInimigoAlvo].vida);
-  $("#danoInimigoId").html(inimigos[indexGrupoInimigos][indexInimigoAlvo].dano);
-  $("#imagemInimigoId").attr("src", inimigos[indexGrupoInimigos][indexInimigoAlvo].imagem);
+function updateTargetData(){
+  enemyTargetIndex = parseInt($("#chosenEnemyId").val());
+  $("#enemyLifeId").html(enemies[enemiesGroupIndex][enemyTargetIndex].life);
+  $("#enemyDamageId").html(enemies[enemiesGroupIndex][enemyTargetIndex].damage);
+  $("#enemyImageId").attr("src", enemies[enemiesGroupIndex][enemyTargetIndex].image);
 }
 
-function iniciarBatalha(){
-  criarPersonagens();
-  criarInimigos();
-  selecionarInimigos();
-  atualizarDadosPersonagem();
+function startBattle(){
+  createCharacters();
+  createEnemies();
+  selectEnemies();
+  updateCharacterData();
 }
 
-function selecionarPersonagem(){
-  indexPersonagem = $("#personagemEscolhidoId").val();
-  atualizarDadosPersonagem();
+function selectCharacter(){
+  characterIndex = $("#chosenCharacterId").val();
+  updateCharacterData();
 }
 
-function atualizarDadosPersonagem(){
-  $("#vidaPersonagemId").html(personagens[indexPersonagem].vida);
-  $("#danoPersonagemId").html(personagens[indexPersonagem].dano);
-  $("#imagemPersonagemId").attr("src", personagens[indexPersonagem].imagem);
+function updateCharacterData(){
+  $("#characterLifeId").html(characters[characterIndex].life);
+  $("#characterDamageId").html(characters[characterIndex].damage);
+  $("#characterImageId").attr("src", characters[characterIndex].image);
 }
 
-//atacar
+//attack
 
-var porcentagemInimigo = 50;
+var enemyPercentage = 50;
 
-function Atacar(){
+function attack(){
   var htmlFinal = "";
 
-  //o personagem escolhido esta morto??
-  if (personagens[indexPersonagem].vida <= 0){
-    htmlFinal = personagens[indexPersonagem].classe + " está morto, por favor ataque com outro personagem! ";
+  //Is the chosen character dead?
+  if (characters[characterIndex].life <= 0){
+    htmlFinal = characters[characterIndex].class1 + " is dead, please attack with other character! ";
   }
 
-  //0 inimigo esta morto?
-  else if(inimigos[indexGrupoInimigos][indexInimigoAlvo].vida <= 0){
-    htmlFinal = inimigos[indexGrupoInimigos][indexInimigoAlvo].nome + " já morreu, ataque outro inimigo! ";
+  //Is the enemy dead?
+  else if(enemies[enemiesGroupIndex][enemyTargetIndex].life <= 0){
+    htmlFinal = enemies[enemiesGroupIndex][enemyTargetIndex].name + " is already dead, attack other enemy! ";
   }
 
-  // agora eu posso atacar novamente...
+  //Now I can attack again
   else{
-    //ataque personagem = 100% de precisao
-    inimigos[indexGrupoInimigos][indexInimigoAlvo].vida -= personagens[indexPersonagem].dano;
+    //character attack = 100% precise
+    enemies[enemiesGroupIndex][enemyTargetIndex].life -= characters[characterIndex].damage;
 
-    htmlFinal = inimigos[indexGrupoInimigos][indexInimigoAlvo].nome + " recebeu " + personagens[indexPersonagem].dano + " de dano. ";
+    htmlFinal = enemies[enemiesGroupIndex][enemyTargetIndex].name + " received " + characters[characterIndex].damage + " of damage. ";
  
-    //verficando se o personagem morreu...
-    if(inimigos[indexGrupoInimigos][indexInimigoAlvo].vida <= 0){
-      htmlFinal = inimigos[indexGrupoInimigos][indexInimigoAlvo].nome + " morreu. ";
+    //checking if the character is dead
+    if(enemies[enemiesGroupIndex][enemyTargetIndex].life <= 0){
+      htmlFinal = enemies[enemiesGroupIndex][enemyTargetIndex].name + " died. ";
 
-      inimigos[indexGrupoInimigos][indexInimigoAlvo].vida = 0;
+      enemies[enemiesGroupIndex][enemyTargetIndex].life = 0;
     }
 
-    // ataque inimigo = 50% de precisao
-    if(Math.floor(Math.random() * 100) <= porcentagemInimigo){
-      personagens[indexPersonagem].vida -= inimigos[indexGrupoInimigos][indexInimigoAlvo].dano;
+    //enemy attack = 50% precise
+    if(Math.floor(Math.random() * 100) <= enemyPercentage){
+      characters[characterIndex].life -= enemies[enemiesGroupIndex][enemyTargetIndex].damage;
 
-      //mensagem
-      htmlFinal += personagens[indexPersonagem].classe + " recebeu " + inimigos[indexGrupoInimigos][indexInimigoAlvo].dano + " de dano. ";
+      //message
+      htmlFinal += characters[characterIndex].class1 + " received " + enemies[enemiesGroupIndex][enemyTargetIndex].damage + " of damage. ";
 
-      //verifica a morte
-      if(personagens[indexPersonagem].vida <= 0){
-        personagens[indexPersonagem].vida = 0;
-        htmlFinal += personagens[indexPersonagem].classe + " morreu. ";
+      //check if its dead
+      if(characters[characterIndex].life <= 0){
+        characters[characterIndex].life = 0;
+        htmlFinal += characters[characterIndex].class1 + " died. ";
       }
     }
-    //verificando se todos os meus inimigos estao mortos
-    var todosInimigosEstaoMortos = verificaTodosInimigosMortos();
+    //checking if all the enemies are dead
+    var allEnemiesDead = chackAllEnemiesDead();
 
-    if(todosInimigosEstaoMortos){
-      htmlFinal += "Todos os inimigos estão mortos, você pode saquear os seus pontos de evolução!";
+    if(allEnemiesDead){
+      htmlFinal += "All enemies are dead, you  can withdraw your evolution points!";
 
-      $("#botaoSaquearId").attr("disabled", false);
+      $("#withdrawButtonId").attr("disabled", false);
     }
   }
 
-  atualizarDadosPersonagem();
-  atualizarDadosAlvo();
+  updateCharacterData();
+  updateTargetData();
 
-  $("#resultadoId").html(htmlFinal);
+  $("#resultId").html(htmlFinal);
 }
 
-function verificaTodosInimigosMortos(){
-  for(var i = 0; i < inimigos[indexGrupoInimigos].length; i++){
-    if(inimigos[indexGrupoInimigos][i].vida > 0){
+function chackAllEnemiesDead(){
+  for(var i = 0; i < enemies[enemiesGroupIndex].length; i++){
+    if(enemies[enemiesGroupIndex][i].life > 0){
       return false;
     }
   }
   return true;
 }
 
-function saquear(){
-  pontosParaEvolucao += 1;
-  atualizarPontosEvolucao();
+function withdraw(){
+  evolutionPoints += 1;
+  updateEvolutionPoints();
   $("#botaoSaquearId").attr("disabled", true);
 }
