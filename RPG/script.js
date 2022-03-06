@@ -57,11 +57,11 @@ function evolveDamage(class1){
       warriorDamage += evolutionAttributes;
       $("#WarriorDamageId").html(warriorDamage);
       break;
-    case "arqueiro":
+    case "archer":
       archerDamage += evolutionAttributes;
       $("#ArcherDamageId").html(archerDamage);
       break;
-    case "mago":
+    case "mage":
       mageDamage += evolutionAttributes;
       $("#MageDamageId").html(mageDamage);
       break;
@@ -78,11 +78,11 @@ function evolveLife(class1){
       warriorLife += evolutionAttributes;
       $("#WarriorLifeId").html(warriorLife);
       break;
-    case "arqueiro":
+    case "archer":
       archerLife += evolutionAttributes;
       $("#ArcherLifeId").html(archerLife);
       break;
-    case "mago":
+    case "mage":
       mageLife += evolutionAttributes;
       $("#MageLifeId").html(mageLife);
       break;
@@ -241,5 +241,5 @@ function chackAllEnemiesDead(){
 function withdraw(){
   evolutionPoints += 1;
   updateEvolutionPoints();
-  $("#botaoSaquearId").attr("disabled", true);
+  $("#withdrawButtonId").attr("disabled", true);
 }

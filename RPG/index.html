@@ -136,7 +136,7 @@
 
                         <!-- attack button -->
                         <div class="align-self-center">
-                            <button type="button" class="btn btn-primary form-control mt-3" onclick="Attack()">
+                            <button type="button" class="btn btn-primary form-control mt-3" onclick="attack()">
                                 Attack
                             </button>
                         </div>
@@ -147,7 +147,7 @@
                                 <div class="input-group-prepend">
                                     <label class="input-group-text" for="inputGroupSelect01">Enemy</label>
                                 </div>
-                                <select class="custom-select" onchange="updateTargetData()" id="chosenEnemiesId">
+                                <select class="custom-select" onchange="updateTargetData()" id="chosenEnemyId">
                                     <option selected>Select your enemies</option>
                                 </select>
                             </div>
@@ -174,7 +174,7 @@
                     </div>
 
                     <!-- result -->
-                    <label>Result</label>
+                    <label>Result:</label>
                     <label id="resultId"></label>
 
                     <!-- withdraw button -->
